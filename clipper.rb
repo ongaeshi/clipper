@@ -2,10 +2,14 @@ require "clipper"
 require "clipboard"
 
 def markdown(src)
-  url, title = src.split(" ")
-  url.strip!
-  title.strip!
-  Clipboard.copy("[#{title}](#{url})")
+  lines = src.split("\n")
+  text = lines.map do |line|
+    url, title = line.split(" ")
+    url.strip!
+    title.strip!
+    "[#{title}](#{url})"
+  end.join("\n")
+  Clipboard.copy(text)
 end
 
 def eval(src)
