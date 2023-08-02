@@ -2,7 +2,10 @@ require "clipper"
 require "clipboard"
 
 def markdown(src)
-  p "markdown #{src}"
+  url, title = src.split(" ")
+  url.strip!
+  title.strip!
+  Clipboard.copy("[#{title}](#{url})")
 end
 
 def eval(src)
@@ -12,7 +15,6 @@ end
 def main(argv)
   command = argv[0]
   src = Clipboard.paste.encode("UTF-8")
-
   send(command.to_sym, src)
 end
 
