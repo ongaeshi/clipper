@@ -17,15 +17,17 @@ end
 # Patter3:
 # ongaeshi/clipper - GitHub https://github.com/ongaeshi/clipper
 # [ongaeshi/clipper - GitHub](https://github.com/ongaeshi/clipper)
+#
+# Patter4:
+#  ongaeshi/clipper - GitHub https://github.com/ongaeshi/clipper 
+# [ongaeshi/clipper - GitHub](https://github.com/ongaeshi/clipper)
 def parse_markdown(src)
   d = src.split(" ")
-  if uri?(d[0]) 
+  if uri?(d[0])
     url, title = d[0], d[1..].join(" ")
   else
     title, url = d[0..-2].join(" "), d[-1]
   end
-  url.strip!
-  title.strip!
   "[#{title}](#{url})"
 end
 
