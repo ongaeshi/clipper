@@ -30,9 +30,12 @@ def parse_markdown(src)
   d = src.split(" ")
   if uri?(d[0])
     url, title = d[0], d[1..].join(" ")
-  else
+  elsif uri?(d[-1])
     title, url = d[0..-2].join(" "), d[-1]
+  else
+    return src
   end
+  
   if title.empty?
     "[#{url}](#{url})"
   else
