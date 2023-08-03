@@ -25,7 +25,7 @@ end
 #
 # Patter5:
 # https://github.com/ongaeshi/clipper
-# [](https://github.com/ongaeshi/clipper)
+# [https://github.com/ongaeshi/clipper](https://github.com/ongaeshi/clipper)
 def parse_markdown(src)
   d = src.split(" ")
   if uri?(d[0])
@@ -33,7 +33,11 @@ def parse_markdown(src)
   else
     title, url = d[0..-2].join(" "), d[-1]
   end
-  "[#{title}](#{url})"
+  if title.empty?
+    "[#{url}](#{url})"
+  else
+    "[#{title}](#{url})"
+  end
 end
 
 def markdown(src)
