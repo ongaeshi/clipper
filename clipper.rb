@@ -1,5 +1,10 @@
 require "clipper"
 require "clipboard"
+require "uri"
+
+def uri?(src)
+  URI::DEFAULT_PARSER.make_regexp.match(src)
+end
 
 # Patter1:
 # https://github.com/ongaeshi/clipper ongaeshi/clipper
@@ -8,9 +13,17 @@ require "clipboard"
 # Patter2:
 # https://github.com/ongaeshi/clipper ongaeshi/clipper - GitHub
 # [ongaeshi/clipper - GitHub](https://github.com/ongaeshi/clipper)
+#
+# Patter3:
+# ongaeshi/clipper - GitHub https://github.com/ongaeshi/clipper
+# [ongaeshi/clipper - GitHub](https://github.com/ongaeshi/clipper)
 def parse_markdown(src)
   d = src.split(" ")
-  url, title = d[0], d[1..].join(" ")
+  if uri?(d[0]) 
+    url, title = d[0], d[1..].join(" ")
+  else
+    title, url = d[0..-2].join(" "), d[-1]
+  end
   url.strip!
   title.strip!
   "[#{title}](#{url})"
