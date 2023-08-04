@@ -43,7 +43,7 @@ def parse_markdown(src)
 end
 
 def markdown(src, _args)
-  lines = src.split("\n")
+  lines = src.split(/\R/)
   text = lines.compact_blank.map do |line|
     parse_markdown(line)
   end.join("\n")
