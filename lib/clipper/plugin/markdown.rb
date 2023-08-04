@@ -1,6 +1,5 @@
-require "clipboard"
+require "clipper/util"
 require "uri"
-require "active_support/all"
 
 def uri?(src)
   URI::DEFAULT_PARSER.make_regexp.match(src)
@@ -43,10 +42,7 @@ def parse_markdown(src)
 end
 
 def markdown(src, _args)
-  lines = src.split(/\R/)
-  text = lines.compact_blank.map do |line|
+  Clipper::Util.map_non_blank_line(src) do |line|
     parse_markdown(line)
-  end.join("\n")
-  Clipboard.copy(text)
+  end
 end
-
