@@ -41,7 +41,7 @@ def parse_markdown(src)
   end
 end
 
-def markdown(src, _args)
+def markdown(src)
   Clipper::Util.map_non_blank_line(src) do |line|
     parse_markdown(line)
   end

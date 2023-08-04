@@ -1,6 +1,6 @@
 require "clipper/util"
 
-def lineno(src, _)
+def lineno(src)
   digis = src.split(/\R/).count.to_s.length
   no = 1
   Clipper::Util.map_line(src) do |line|

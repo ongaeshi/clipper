@@ -1,6 +1,6 @@
 require "clipper/util"
 
-def unindent(src, _)
+def unindent(src)
   space = src.split(/\R/).compact_blank.map do |line|
     line.length - line.lstrip.length
   end.min
