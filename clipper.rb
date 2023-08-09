@@ -2,11 +2,12 @@ require "clipper"
 require "clipboard"
 
 def main(argv)
+  src = Clipboard.paste.encode("UTF-8")
   argv.each do |command|
-    src = Clipboard.paste.encode("UTF-8")
     require "clipper/plugin/#{command}"
-    send(command.to_sym, src)
+    src = send(command.to_sym, src)
   end
+  Clipboard.copy(src)
 end
 
 main(ARGV)
