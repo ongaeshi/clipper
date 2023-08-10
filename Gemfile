@@ -7,3 +7,5 @@ source "https://rubygems.org"
 gem "clipboard", "~> 1.3"
 
 gem "activesupport", "~> 7.0"
+
+gem "launchy", "~> 2.5"
