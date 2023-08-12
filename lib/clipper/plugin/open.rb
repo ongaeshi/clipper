@@ -4,7 +4,7 @@ require "uri"
 
 def open(src)
   Clipper::Util.map_line(src) do |line|
-    Launchy.open(URI.extract(line).first)
+    Launchy.open(line.strip.gsub(/^"|"$/, ""))
   end
   src
 end
