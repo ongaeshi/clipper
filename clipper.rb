@@ -4,7 +4,11 @@ require "clipboard"
 def main(argv)
   src = Clipboard.paste.encode("UTF-8")
   argv.each do |command|
-    require "clipper/plugin/#{command}"
+    begin
+      require "clipper/user_plugin/#{command}"
+    rescue LoadError
+      require "clipper/plugin/#{command}"
+    end
     src = send(command.to_sym, src)
   end
   Clipboard.copy(src)
