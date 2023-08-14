@@ -1,4 +1,5 @@
 /vendor/
 /.runa/*
 !/.runa/.gitkeep
-/lib/clipper/user_plugin/
+/lib/clipper/user_plugin/*
+!/lib/clipper/user_plugin/.gitkeep
